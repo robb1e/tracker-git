@@ -1,7 +1,3 @@
 require "tracker-git/version"
+require "tracker-git/base"
 
-module Tracker
-  module Git
-    # Your code goes here...
-  end
-end
