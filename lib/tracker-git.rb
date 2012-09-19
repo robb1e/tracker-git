@@ -1,3 +1,3 @@
 require "tracker-git/version"
-require "tracker-git/base"
+require "tracker-git/project"
 
