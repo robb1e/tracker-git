@@ -4,6 +4,8 @@ Update Pivotal Tracker depending on your local Git repository.
 
 This gem finds all finished stories and bugs and if it finds the story id in a Git commit, marks that story as delivery. 
 
+This has proved useful as part of a 'deploy to staging' strategy. If you automatically deploy to a staging environment after a successful continuous integration build, and want to update a story from 'finished' to 'delivered', then this Gem is for you.
+
 ## CI
 
 [![Build Status](https://secure.travis-ci.org/robb1e/tracker-git.png)](http://travis-ci.org/robb1e/tracker-git)
@@ -24,7 +26,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem will create a 'tracker' binary. Call that in your deploy script with the following environment variables set, and your finished stories will be updated to delivered.
+
+    export tracker_token=abc123
+    export tracker_project_id=123456
 
 ## Contributing
 
