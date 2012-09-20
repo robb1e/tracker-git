@@ -1,6 +1,12 @@
 # Tracker::Git
 
-TODO: Write a gem description
+Update Pivotal Tracker depending on your local Git repository. 
+
+This gem finds all finished stories and bugs and if it finds the story id in a Git commit, marks that story as delivery. 
+
+## CI
+
+[![Build Status](https://secure.travis-ci.org/robb1e/tracker-git.png)](http://travis-ci.org/robb1e/tracker-git)
 
 ## Installation
 
