@@ -9,7 +9,7 @@ module Tracker
     def mark_as_delivered
       project.finished.each do |story|
         if git.contains?(story.id)
-          project.deliver(story.id)
+          project.deliver(story)
         end
       end
     end
