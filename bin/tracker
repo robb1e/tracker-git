@@ -6,4 +6,11 @@ rescue LoadError
   require 'tracker-git'
 end
 
-Tracker.hello
+tracker_token = ENV['tracker_token']
+project_id = ENV['tracker_project_id']
+
+project = Tracker::Project.new(tracker_token, project_id)
+git = Tracker::Git.new
+deliverer = Tracker::Deliverer.new(project, git)
+
+deliverer.mark_as_delivered
