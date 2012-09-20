@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'pivotal-tracker'
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "guard-rspec"
+  gem.add_development_dependency "rake"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
