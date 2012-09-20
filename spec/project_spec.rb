@@ -17,7 +17,7 @@ describe Tracker::Project do
     end
   end
 
-  describe ".finished" do
+  describe "#finished" do
 
     let(:query) { stub }
 
@@ -31,6 +31,16 @@ describe Tracker::Project do
       project = Tracker::Project.new(tracker_token, project_id)
       project.finished.should == [feature, bug]
     end
-
   end
+
+  describe "#deliver" do
+    let(:project) { Tracker::Project.new(stub, stub) }
+    let(:story) { stub }
+
+    it "marks the story as delivered" do
+      story.should_receive(:update).with(current_state: "delivered")
+      project.deliver(story)
+    end
+  end
+
 end
