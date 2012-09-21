@@ -31,6 +31,10 @@ This gem will create a 'tracker' binary. Call that in your deploy script with th
     export tracker_token=abc123
     export tracker_project_id=123456
 
+## Known Issues
+
+- [Restarting stories](https://github.com/robb1e/tracker-git/issues/1)
+
 ## Contributing
 
 1. Fork it
