@@ -9,8 +9,13 @@ end
 tracker_token = ENV['tracker_token']
 project_id = ENV['tracker_project_id']
 
-project = Tracker::Project.new(tracker_token, project_id)
-git = Tracker::Git.new
-deliverer = Tracker::Deliverer.new(project, git)
+if tracker_token && project_id
+	project = Tracker::Project.new(tracker_token, project_id)
+	git = Tracker::Git.new
+	deliverer = Tracker::Deliverer.new(project, git)
+	deliverer.mark_as_delivered
+else
+	puts "Please provide 'tracker_token' and 'tracker_project_id' as environment variables."
+	exit(1)
+end
 
-deliverer.mark_as_delivered
