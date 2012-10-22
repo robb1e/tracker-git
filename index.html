@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Tracker-git by robb1e</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Tracker-git</h1>
+        <p>Integrations with Pivotal Tracker based on current Git repository.</p>
+
+        <p class="view"><a href="https://github.com/robb1e/tracker-git">View the Project on GitHub <small>robb1e/tracker-git</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/robb1e/tracker-git/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/robb1e/tracker-git/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/robb1e/tracker-git">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Tracker::Git</h1>
+
+<p>Update Pivotal Tracker depending on your local Git repository. </p>
+
+<p>This gem finds all finished stories and bugs and if it finds the story id in a Git commit, marks that story as delivery. </p>
+
+<p>This has proved useful as part of a 'deploy to staging' strategy. If you automatically deploy to a staging environment after a successful continuous integration build, and want to update a story from 'finished' to 'delivered', then this Gem is for you.</p>
+
+<h2>CI</h2>
+
+<p><a href="http://travis-ci.org/robb1e/tracker-git"><img src="https://secure.travis-ci.org/robb1e/tracker-git.png" alt="Build Status"></a></p>
+
+<h2>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'tracker-git'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install tracker-git
+</code></pre>
+
+<h2>Usage</h2>
+
+<p>This gem will create a 'tracker' binary. Call that in your deploy script with the following environment variables set, and your finished stories will be updated to delivered.</p>
+
+<pre><code>export tracker_token=abc123
+export tracker_project_id=123456
+</code></pre>
+
+<h2>Known Issues</h2>
+
+<ul>
+<li><a href="https://github.com/robb1e/tracker-git/issues/1">Restarting stories</a></li>
+</ul><h2>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/robb1e">robb1e</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-26466641-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
