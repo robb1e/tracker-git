@@ -26,10 +26,13 @@ Or install it yourself as:
 
 ## Usage
 
-This gem will create a 'tracker' binary. Call that in your deploy script with the following environment variables set, and your finished stories will be updated to delivered.
+This gem will create a 'tracker' binary. Call that in your deploy script with
+the tracker id and access token as command line arguments, or with following
+environment variables set, and your finished stories will be updated to
+delivered.
 
-    export TRACKER_TOKEN=abc123
     export TRACKER_PROJECT_ID=123456
+    export TRACKER_TOKEN=abc123
 
 ## Known Issues
 

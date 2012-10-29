@@ -6,16 +6,27 @@ rescue LoadError
   require 'tracker-git'
 end
 
-tracker_token = ENV['TRACKER_TOKEN']
-project_id = ENV['TRACKER_PROJECT_ID']
+project_id, tracker_token = \
+  if ARGV.size == 2
+    ARGV
+  else
+    [ENV['TRACKER_PROJECT_ID'], ENV['TRACKER_TOKEN']]
+  end
 
-if tracker_token && project_id
-	project = Tracker::Project.new(tracker_token, project_id)
-	git = Tracker::Git.new
-	deliverer = Tracker::Deliverer.new(project, git)
-	deliverer.mark_as_delivered
-else
-	puts "Please provide 'TRACKER_TOKEN' and 'TRACKER_PROJECT_ID' as environment variables."
+unless tracker_token && project_id
+  puts <<-USAGE
+Usage: Pass your pivotal tracker project id and access token on the command
+line, e.g:
+  tracker 123456 abc123
+or as an environment variable:
+  export TRACKER_PROJECT_ID=123456
+  export TRACKER_TOKEN=abc123
+  tracker
+  USAGE
 	exit(1)
 end
 
+project = Tracker::Project.new(tracker_token, project_id)
+git = Tracker::Git.new
+deliverer = Tracker::Deliverer.new(project, git)
+deliverer.mark_as_delivered
