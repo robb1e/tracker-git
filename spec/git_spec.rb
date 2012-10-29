@@ -4,7 +4,7 @@ describe Tracker::Git do
   describe "#search" do
     let(:message) { "[Finishes #123456]" }
     let(:branch) { "master" }
-    let(:query) { "git log --grep '#{message}' #{branch}"}
+    let(:query) { "git log --grep='#{message}' #{branch}"}
     let(:result) { "Some git message" }
 
     before do
