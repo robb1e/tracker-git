@@ -6,11 +6,11 @@ rescue LoadError
   require 'tracker-git'
 end
 
-project_id, tracker_token = \
-  if ARGV.size == 2
+project_id, tracker_token, git_branch = \
+  if [2, 3].include? ARGV.size
     ARGV
   else
-    [ENV['TRACKER_PROJECT_ID'], ENV['TRACKER_TOKEN']]
+    [ENV['TRACKER_PROJECT_ID'], ENV['TRACKER_TOKEN'], ENV['GIT_BRANCH']]
   end
 
 unless tracker_token && project_id
@@ -29,4 +29,4 @@ end
 project = Tracker::Project.new(tracker_token, project_id)
 git = Tracker::Git.new
 deliverer = Tracker::Deliverer.new(project, git)
-deliverer.mark_as_delivered
+deliverer.mark_as_delivered(git_branch)

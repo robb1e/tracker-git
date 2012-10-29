@@ -6,9 +6,12 @@ module Tracker
       @git = git
     end
 
-    def mark_as_delivered
+    def mark_as_delivered(branch = nil)
+      options = {}
+      options[:branch] = branch if branch
+
       project.finished.each do |story|
-        if git.contains?(story.id)
+        if git.contains?(story.id, options)
           project.deliver(story)
         end
       end

@@ -34,6 +34,9 @@ delivered.
     export TRACKER_PROJECT_ID=123456
     export TRACKER_TOKEN=abc123
 
+Optionally you can specify a specific git branch as the third command line
+argument or with the GIT_BRANCH environment variable.
+
 ## Known Issues
 
 - [Restarting stories](https://github.com/robb1e/tracker-git/issues/1)
