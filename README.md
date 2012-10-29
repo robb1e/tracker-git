@@ -28,8 +28,8 @@ Or install it yourself as:
 
 This gem will create a 'tracker' binary. Call that in your deploy script with the following environment variables set, and your finished stories will be updated to delivered.
 
-    export tracker_token=abc123
-    export tracker_project_id=123456
+    export TRACKER_TOKEN=abc123
+    export TRACKER_PROJECT_ID=123456
 
 ## Known Issues
 
