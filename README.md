@@ -34,8 +34,8 @@ delivered.
     export TRACKER_PROJECT_ID=123456
     export TRACKER_TOKEN=abc123
 
-Optionally you can specify a specific git branch as the third command line
-argument or with the GIT_BRANCH environment variable.
+Optionally you can specify a git branch to search for completed story IDs as
+the third command line argument or with the GIT\_BRANCH environment variable.
 
 ## Known Issues
 
