@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Tracker::Git do
   describe "#search" do
     let(:message) { "[Finishes #123456]" }
-    let(:branch) { "master" }
+    let(:branch) { "HEAD" }
     let(:query) { "git log #{branch} --grep='#{message}'"}
     let(:result) { "Some git message" }
 
