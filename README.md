@@ -10,6 +10,7 @@ This has proved useful as part of a 'deploy to staging' strategy. If you automat
 
 [![Build Status](https://secure.travis-ci.org/robb1e/tracker-git.png)](http://travis-ci.org/robb1e/tracker-git)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/robb1e/tracker-git)
+[![Dependency Status](https://gemnasium.com/robb1e/tracker-git.png)](https://gemnasium.com/robb1e/tracker-git)
 
 ## Installation
 
