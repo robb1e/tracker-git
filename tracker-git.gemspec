@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Tracker integration: Update Tracker based on current Git repo.}
   gem.summary       = %q{Tracker integration.}
   gem.homepage      = ""
+  gem.license       = 'MIT'
 
   gem.add_runtime_dependency('pivotal-tracker', '>= 0.5.10')
   gem.add_development_dependency "rspec"
