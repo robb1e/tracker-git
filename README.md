@@ -35,6 +35,11 @@ delivered.
 
     export TRACKER_PROJECT_ID=123456
     export TRACKER_TOKEN=abc123
+    tracker
+    
+You can also pass the project id and token in as parameters
+
+    tracker 123456 abc123
 
 Optionally you can specify a git branch to search for completed story IDs as
 the third command line argument or with the GIT\_BRANCH environment variable.
