@@ -19,6 +19,7 @@ describe Tracker::Deliverer do
         expect(git).to receive(:contains?).with(2, {}) { false }
         expect(project).to receive(:deliver).with(commited_story)
         expect(project).to_not receive(:deliver).with(uncommited_story)
+        expect(project).to_not receive(:comment).with(uncommited_story)
 
         deliverer.mark_as_delivered
       end
@@ -31,7 +32,7 @@ describe Tracker::Deliverer do
         expect(git).to receive(:contains?).with(2, {branch: 'develop'}) { false }
         expect(project).to receive(:deliver).with(commited_story)
         expect(project).to_not receive(:deliver).with(uncommited_story)
-
+        expect(project).to_not receive(:comment)
         deliverer.mark_as_delivered('develop')
       end
     end
@@ -48,6 +49,20 @@ describe Tracker::Deliverer do
 
         deliverer.mark_as_delivered(nil, 'label')
       end
+    end
+
+    context 'when given a specific server name' do
+      it('should comment story with server name where story is delivered') do
+        project.should_receive(:comment)
+        project.should_receive(:finished) { finished_stories }
+        git.should_receive(:contains?).with(1, {}) { true }
+        git.should_receive(:contains?).with(2, {}) { false }
+        project.should_receive(:deliver).with(commited_story)
+        project.should_not_receive(:deliver).with(uncommited_story)
+
+        deliverer.mark_as_delivered(nil, 'spot instance')
+      end
+
     end
   end
 

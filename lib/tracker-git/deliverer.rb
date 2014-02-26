@@ -6,7 +6,7 @@ module Tracker
       @git = git
     end
 
-    def mark_as_delivered(branch = nil, label = nil, use_accepted = false)
+    def mark_as_delivered(branch = nil, label = nil, use_accepted = false, server_name = nil)
       options = {}
       options[:branch] = branch if branch
 
@@ -17,6 +17,7 @@ module Tracker
           project.accept(story) if use_accepted
           project.deliver(story) unless use_accepted
           project.add_label(story, label) if label
+          project.comment(story, server_name) if server_name
         end
       end
     end

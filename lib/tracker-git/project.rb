@@ -35,6 +35,10 @@ module Tracker
       story.update(labels: labels.join(","))
     end
 
+    def comment(story, server_name)
+      story.notes.create(:text => "Delivered by script to #{server_name}")
+    end
+
     private
     def _project
       @project ||= PivotalTracker::Project.find(project_id)
