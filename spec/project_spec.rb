@@ -73,13 +73,13 @@ describe Tracker::Project do
   end
 
   describe "#comment" do
-    let(:project) { Tracker::Project.new(stub, stub) }
-    let(:story) { stub }
-    let(:notes_stub) { stub }
+    let(:project) { Tracker::Project.new(double, double) }
+    let(:story) { double }
+    let(:notes_stub) { double }
     let(:server_name) {'spot instance' }
 
-    before { notes_stub.should_receive(:create).with( hash_including(:text => "Delivered by script to #{server_name}")) }
-    before { story.should_receive(:notes) { notes_stub } }
+    before { allow(notes_stub).to receive(:create).with( hash_including(:text => "Delivered by script to #{server_name}")) }
+    before { expect(story).to receive(:notes) { notes_stub } }
 
     it "comment story with server" do
       project.comment story, server_name

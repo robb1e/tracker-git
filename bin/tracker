@@ -3,11 +3,13 @@ require 'optparse'
 
 begin
   require 'tracker-git'
+  require 'optparse'
 rescue LoadError
   require 'rubygems'
   require 'tracker-git'
 end
 
+remote_branch, server_name = [ENV['REMOTE_BRANCH'], ENV['SERVER_NAME']]
 options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: example.rb [options]"
@@ -19,13 +21,21 @@ OptionParser.new do |opts|
   opts.on("-a", "--accept", "Changes status from delivered to accepted") do |accept|
     options[:accept] = true
   end
+
+  opts.on('--remote-branch [VALUE]') do |value|
+    remote_branch = value
+  end
+
+  opts.on('--server-name [VALUE]') do |value|
+    server_name = value
+  end
 end.parse!
 
 project_id, tracker_token, git_branch, server_name = \
   if [2, 3, 4].include? ARGV.size
     ARGV
   else
-    [ENV['TRACKER_PROJECT_ID'], ENV['TRACKER_TOKEN'], ENV['GIT_BRANCH'], ENV['SERVER_NAME']]
+    [ENV['TRACKER_PROJECT_ID'], ENV['TRACKER_TOKEN'], ENV['GIT_BRANCH']]
   end
 
 unless tracker_token && project_id
@@ -44,5 +54,5 @@ end
 project = Tracker::Project.new(tracker_token, project_id)
 git = Tracker::Git.new
 deliverer = Tracker::Deliverer.new(project, git)
-deliverer.mark_as_delivered(git_branch, options[:label], false, server_name)
-deliverer.mark_as_accepted(git_branch, options[:label]) if options[:accept]
+deliverer.mark_as_delivered(git_branch, remote_branch, options[:label], false, server_name)
+deliverer.mark_as_accepted(git_branch, remote_branch, options[:label]) if options[:accept]
