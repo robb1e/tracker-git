@@ -22,7 +22,7 @@ module Tracker
     end
 
     def add_label(story, label)
-      labels = story.labels.split(",") || []
+      labels = (story.labels || "").split(",")
       labels << label
       story.update(labels: labels.join(","))
     end
