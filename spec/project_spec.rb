@@ -43,4 +43,33 @@ describe Tracker::Project do
     end
   end
 
+  describe "#add_label" do
+    let(:project) { Tracker::Project.new(stub, stub) }
+    let(:story) { stub }
+
+    context 'there is no label on the story' do
+      it "adds a label" do
+        story.should_receive(:labels) { '' }
+        story.should_receive(:update).with(labels: 'label')
+        project.add_label(story, 'label')
+      end
+    end
+
+    context 'there is already one label on the story' do
+      it "adds a label" do
+        story.should_receive(:labels) { 'foo' }
+        story.should_receive(:update).with(labels: 'foo,label')
+        project.add_label(story, 'label')
+      end
+    end
+
+    context 'there is already two labels on the story' do
+      it "adds a label" do
+        story.should_receive(:labels) { 'foo,bar' }
+        story.should_receive(:update).with(labels: 'foo,bar,label')
+        project.add_label(story, 'label')
+      end
+    end
+  end
+
 end

@@ -35,6 +35,20 @@ describe Tracker::Deliverer do
         deliverer.mark_as_delivered('develop')
       end
     end
+
+    context 'when given a label to add' do
+      it('should mark stories as delivered and add a label') do
+        project.should_receive(:finished) { finished_stories }
+        git.should_receive(:contains?).with(1, {}) { true }
+        git.should_receive(:contains?).with(2, {}) { false }
+        project.should_receive(:deliver).with(commited_story)
+        project.should_not_receive(:deliver).with(uncommited_story)
+        project.should_receive(:add_label).with(commited_story, 'label')
+        project.should_not_receive(:add_label).with(uncommited_story, 'label')
+
+        deliverer.mark_as_delivered(nil, 'label')
+      end
+    end
   end
 
 end

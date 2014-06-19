@@ -1,10 +1,21 @@
 #!/usr/bin/env ruby
+require 'optparse'
+
 begin
   require 'tracker-git'
 rescue LoadError
   require 'rubygems'
   require 'tracker-git'
 end
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: example.rb [options]"
+
+  opts.on("-l", "--label LABEL", "Add a label to a story marked as deployed") do |label|
+    options[:label] = label
+  end
+end.parse!
 
 project_id, tracker_token, git_branch = \
   if [2, 3].include? ARGV.size
@@ -29,4 +40,4 @@ end
 project = Tracker::Project.new(tracker_token, project_id)
 git = Tracker::Git.new
 deliverer = Tracker::Deliverer.new(project, git)
-deliverer.mark_as_delivered(git_branch)
+deliverer.mark_as_delivered(git_branch, options[:label])
