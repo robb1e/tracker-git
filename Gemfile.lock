@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tracker-git (0.0.3)
+    tracker-git (0.0.4)
       pivotal-tracker (>= 0.5.10)
 
 GEM
