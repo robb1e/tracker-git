@@ -13,7 +13,7 @@ OptionParser.new do |opts|
   opts.banner = "Usage: example.rb [options]"
 
   opts.on("-l", "--label LABEL", "Add a label to a story marked as deployed") do |label|
-    options[:label] = label
+    options[:label] = label if label =~ /[^[:space:]]/
   end
 end.parse!
 
