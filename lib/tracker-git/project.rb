@@ -21,6 +21,12 @@ module Tracker
       story.update(current_state: "delivered")
     end
 
+    def add_label(story, label)
+      labels = (story.labels || "").split(",")
+      labels << label
+      story.update(labels: labels.join(","))
+    end
+
     private
     def _project
       @project ||= PivotalTracker::Project.find(project_id)
