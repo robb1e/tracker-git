@@ -1,8 +1,8 @@
 # Tracker::Git
 
-Update Pivotal Tracker depending on your local Git repository. 
+Update Pivotal Tracker depending on your local Git repository.
 
-This gem finds all finished stories and bugs and if it finds the story id in a Git commit, marks that story as delivery. 
+This gem finds all finished stories and bugs and if it finds the story id in a Git commit, marks that story as delivery.
 
 This has proved useful as part of a 'deploy to staging' strategy. If you automatically deploy to a staging environment after a successful continuous integration build, and want to update a story from 'finished' to 'delivered', then this Gem is for you.
 
@@ -36,13 +36,19 @@ delivered.
     export TRACKER_PROJECT_ID=123456
     export TRACKER_TOKEN=abc123
     tracker
-    
+
 You can also pass the project id and token in as parameters
 
     tracker 123456 abc123
 
 Optionally you can specify a git branch to search for completed story IDs as
 the third command line argument or with the GIT\_BRANCH environment variable.
+
+If you want to add a label (tag) to the story marked as delivered, you
+can use the `--label` flag:
+
+    tracker --label THE_LABEL
+
 
 ## Known Issues
 
