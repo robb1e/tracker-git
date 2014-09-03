@@ -17,8 +17,16 @@ module Tracker
       _project.stories.all(state: "finished", story_type: ['bug', 'feature'])
     end
 
+    def delivered
+      _project.stories.all(state: "delivered", story_type: ['bug', 'feature'])
+    end
+
     def deliver(story)
       story.update(current_state: "delivered")
+    end
+
+    def accept(story)
+      story.update(current_state: "accepted")
     end
 
     def add_label(story, label)
