@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe Tracker::Project do
 
-  let(:tracker_token) { stub }
-  let(:project_id) { stub }
-  let(:the_project) { stub }
-  let(:feature) { stub }
-  let(:bug) { stub }
+  let(:tracker_token) { double }
+  let(:project_id) { double }
+  let(:the_project) { double }
+  let(:feature) { double }
+  let(:bug) { double }
 
   describe "#initialize" do
     it "initializes the project class" do
@@ -19,7 +19,7 @@ describe Tracker::Project do
 
   describe "#finished" do
 
-    let(:query) { stub }
+    let(:query) { double }
 
     before do
       PivotalTracker::Project.should_receive(:find).with(project_id) { the_project }
@@ -34,8 +34,8 @@ describe Tracker::Project do
   end
 
   describe "#deliver" do
-    let(:project) { Tracker::Project.new(stub, stub) }
-    let(:story) { stub }
+    let(:project) { Tracker::Project.new(double, double) }
+    let(:story) { double }
 
     it "marks the story as delivered" do
       story.should_receive(:update).with(current_state: "delivered")
@@ -44,8 +44,8 @@ describe Tracker::Project do
   end
 
   describe "#add_label" do
-    let(:project) { Tracker::Project.new(stub, stub) }
-    let(:story) { stub }
+    let(:project) { Tracker::Project.new(double, double) }
+    let(:story) { double }
 
     context 'there is no label on the story' do
       it "adds a label" do

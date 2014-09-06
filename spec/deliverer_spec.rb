@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe Tracker::Deliverer do
 
-  let(:tracker_token) { stub }
-  let(:project_id) { stub }
-  let(:commited_story) { stub(id: 1) }
-  let(:uncommited_story) { stub(id: 2) }
+  let(:tracker_token) { double }
+  let(:project_id) { double }
+  let(:commited_story) { double(id: 1) }
+  let(:uncommited_story) { double(id: 2) }
   let(:finished_stories) { [commited_story, uncommited_story] }
-  let(:project) { stub }
-  let(:git) { stub }
+  let(:project) { double }
+  let(:git) { double }
   let(:deliverer) { Tracker::Deliverer.new(project, git) }
 
   describe '#mark_as_delivered' do
