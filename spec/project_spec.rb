@@ -11,9 +11,9 @@ describe Tracker::Project do
   describe "#initialize" do
     it "initializes the project class" do
       project = Tracker::Project.new(tracker_token, project_id)
-      project.should be
-      project.tracker_token.should == tracker_token
-      project.project_id.should == project_id
+      expect(project).to be
+      expect(project.tracker_token).to eq(tracker_token)
+      expect(project.project_id).to eq(project_id)
     end
   end
 
@@ -22,14 +22,14 @@ describe Tracker::Project do
     let(:query) { double }
 
     before do
-      PivotalTracker::Project.should_receive(:find).with(project_id) { the_project }
-      the_project.should_receive(:stories) { query }
-      query.should_receive(:all).with(state: "finished", story_type: ['bug', 'feature']) { [feature, bug] }
+      expect(PivotalTracker::Project).to receive(:find).with(project_id) { the_project }
+      expect(the_project).to receive(:stories) { query }
+      expect(query).to receive(:all).with(state: "finished", story_type: ['bug', 'feature']) { [feature, bug] }
     end
 
     it "retrieves finished stories and bugs" do
       project = Tracker::Project.new(tracker_token, project_id)
-      project.finished.should == [feature, bug]
+      expect(project.finished).to eq([feature, bug])
     end
   end
 
@@ -38,7 +38,7 @@ describe Tracker::Project do
     let(:story) { double }
 
     it "marks the story as delivered" do
-      story.should_receive(:update).with(current_state: "delivered")
+      expect(story).to receive(:update).with(current_state: "delivered")
       project.deliver(story)
     end
   end
@@ -49,24 +49,24 @@ describe Tracker::Project do
 
     context 'there is no label on the story' do
       it "adds a label" do
-        story.should_receive(:labels) { '' }
-        story.should_receive(:update).with(labels: 'label')
+        expect(story).to receive(:labels) { '' }
+        expect(story).to receive(:update).with(labels: 'label')
         project.add_label(story, 'label')
       end
     end
 
     context 'there is already one label on the story' do
       it "adds a label" do
-        story.should_receive(:labels) { 'foo' }
-        story.should_receive(:update).with(labels: 'foo,label')
+        expect(story).to receive(:labels) { 'foo' }
+        expect(story).to receive(:update).with(labels: 'foo,label')
         project.add_label(story, 'label')
       end
     end
 
     context 'there is already two labels on the story' do
       it "adds a label" do
-        story.should_receive(:labels) { 'foo,bar' }
-        story.should_receive(:update).with(labels: 'foo,bar,label')
+        expect(story).to receive(:labels) { 'foo,bar' }
+        expect(story).to receive(:update).with(labels: 'foo,bar,label')
         project.add_label(story, 'label')
       end
     end

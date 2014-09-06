@@ -14,11 +14,11 @@ describe Tracker::Deliverer do
   describe '#mark_as_delivered' do
     context 'when called without argument' do
       it('should mark stories as delivered') do
-        project.should_receive(:finished) { finished_stories }
-        git.should_receive(:contains?).with(1, {}) { true }
-        git.should_receive(:contains?).with(2, {}) { false }
-        project.should_receive(:deliver).with(commited_story)
-        project.should_not_receive(:deliver).with(uncommited_story)
+        expect(project).to receive(:finished) { finished_stories }
+        expect(git).to receive(:contains?).with(1, {}) { true }
+        expect(git).to receive(:contains?).with(2, {}) { false }
+        expect(project).to receive(:deliver).with(commited_story)
+        expect(project).to_not receive(:deliver).with(uncommited_story)
 
         deliverer.mark_as_delivered
       end
@@ -26,11 +26,11 @@ describe Tracker::Deliverer do
 
     context 'when given a specific branch' do
       it('should mark stories as delivered') do
-        project.should_receive(:finished) { finished_stories }
-        git.should_receive(:contains?).with(1, {branch: 'develop'}) { true }
-        git.should_receive(:contains?).with(2, {branch: 'develop'}) { false }
-        project.should_receive(:deliver).with(commited_story)
-        project.should_not_receive(:deliver).with(uncommited_story)
+        expect(project).to receive(:finished) { finished_stories }
+        expect(git).to receive(:contains?).with(1, {branch: 'develop'}) { true }
+        expect(git).to receive(:contains?).with(2, {branch: 'develop'}) { false }
+        expect(project).to receive(:deliver).with(commited_story)
+        expect(project).to_not receive(:deliver).with(uncommited_story)
 
         deliverer.mark_as_delivered('develop')
       end
@@ -38,13 +38,13 @@ describe Tracker::Deliverer do
 
     context 'when given a label to add' do
       it('should mark stories as delivered and add a label') do
-        project.should_receive(:finished) { finished_stories }
-        git.should_receive(:contains?).with(1, {}) { true }
-        git.should_receive(:contains?).with(2, {}) { false }
-        project.should_receive(:deliver).with(commited_story)
-        project.should_not_receive(:deliver).with(uncommited_story)
-        project.should_receive(:add_label).with(commited_story, 'label')
-        project.should_not_receive(:add_label).with(uncommited_story, 'label')
+        expect(project).to receive(:finished) { finished_stories }
+        expect(git).to receive(:contains?).with(1, {}) { true }
+        expect(git).to receive(:contains?).with(2, {}) { false }
+        expect(project).to receive(:deliver).with(commited_story)
+        expect(project).to_not receive(:deliver).with(uncommited_story)
+        expect(project).to receive(:add_label).with(commited_story, 'label')
+        expect(project).to_not receive(:add_label).with(uncommited_story, 'label')
 
         deliverer.mark_as_delivered(nil, 'label')
       end

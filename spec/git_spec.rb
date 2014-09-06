@@ -8,27 +8,27 @@ describe Tracker::Git do
     let(:result) { "Some git message" }
 
     before do
-      git.should_receive(:`).with(query) { result }
+      expect(git).to receive(:`).with(query) { result }
     end
     let(:git) { Tracker::Git.new }
 
     context "defaults" do
       it "searches via system calls using default branch" do
-        git.contains?(message).should == true
+        expect(git.contains?(message)).to eq(true)
       end
     end
 
     context "passing branch" do
       let(:branch) { "test" }
       it "searches via system calls using given branch" do
-        git.contains?(message, branch: branch).should == true
+        expect(git.contains?(message, branch: branch)).to eq(true)
       end
     end
 
     context "no result found" do
       let(:result) { "" }
       it "returns false" do
-        git.contains?(message).should == false
+        expect(git.contains?(message)).to eq(false)
       end
     end
   end
