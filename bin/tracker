@@ -15,6 +15,10 @@ OptionParser.new do |opts|
   opts.on("-l", "--label LABEL", "Add a label to a story marked as deployed") do |label|
     options[:label] = label if label =~ /[^[:space:]]/
   end
+
+  opts.on("-a", "--accept", "Changes status from delivered to accepted") do |accept|
+    options[:accept] = true
+  end
 end.parse!
 
 project_id, tracker_token, git_branch = \
@@ -41,3 +45,4 @@ project = Tracker::Project.new(tracker_token, project_id)
 git = Tracker::Git.new
 deliverer = Tracker::Deliverer.new(project, git)
 deliverer.mark_as_delivered(git_branch, options[:label])
+deliverer.mark_as_accepted(git_branch, options[:label]) if options[:accept]
