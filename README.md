@@ -40,6 +40,8 @@ delivered.
 You can also pass the project id and token in as parameters
 
     tracker 123456 abc123
+    
+## Optional parameters
 
 Optionally you can specify a git branch to search for completed story IDs as
 the third command line argument or with the GIT\_BRANCH environment variable.
@@ -50,9 +52,16 @@ can use the `--label` flag:
     tracker --label THE_LABEL
 
 
-## Known Issues
+For detect tasks only in commits which delivered to servers
 
-- [Restarting stories](https://github.com/robb1e/tracker-git/issues/1)
+    --remote-branch=heroku/master
+
+For commenting task with message 'Delivered by script to <%server_name_parameter%>'
+
+    --server-name=staging
+
+Optionally you can specify a git branch to search for completed story IDs as
+the third command line argument or with the GIT\_BRANCH environment variable.
 
 ## Contributing
 
