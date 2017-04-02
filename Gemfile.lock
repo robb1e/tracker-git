@@ -5,7 +5,7 @@ PATH
       pivotal-tracker (>= 0.5.10)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     builder (3.2.2)
     coderay (1.1.0)
